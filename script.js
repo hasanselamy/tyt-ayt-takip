@@ -1,60 +1,58 @@
-// Her şey yüklendikten sonra çalışsın
-document.addEventListener("DOMContentLoaded", function () {
-  const courses = document.querySelectorAll(".course");
+// Sayfa yüklenince çalışacak ana kurulum
+document.addEventListener("DOMContentLoaded", () => {
+  const checkboxes = document.querySelectorAll('.course input[type="checkbox"]');
 
-  // Her ders için ayrı ayrı çalış
-  courses.forEach(function (courseEl) {
-    const courseKey = courseEl.getAttribute("data-course");
-    const checkboxes = courseEl.querySelectorAll('input[type="checkbox"]');
-
-    // Sayfa açılınca kayıtlı olanları geri yükle
-    checkboxes.forEach(function (checkbox) {
-      const topicId = checkbox.getAttribute("data-topic-id");
-      const storageKey = makeStorageKey(courseKey, topicId);
-      const savedValue = localStorage.getItem(storageKey);
-
-      if (savedValue === "1") {
-        checkbox.checked = true;
-      }
-
-      // Her tıklamada kaydet + ilgili dersi ve genel ilerlemeyi güncelle
-      checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-          localStorage.setItem(storageKey, "1");
-        } else {
-          localStorage.setItem(storageKey, "0");
-        }
-
-        updateCourseProgress(courseEl);
-        updateOverallProgress("tyt");
-        updateOverallProgress("ayt");
-      });
-    });
-
-    // Bu dersin barını başlangıçta hesapla
-    updateCourseProgress(courseEl);
+  // Kayıtlı durumları geri yükle ve event bağla
+  checkboxes.forEach((checkbox) => {
+    restoreCheckboxState(checkbox);
+    checkbox.addEventListener("change", handleCheckboxChange);
   });
 
-  // Genel TYT & AYT barlarını da başlangıçta hesapla
-  updateOverallProgress("tyt");
-  updateOverallProgress("ayt");
+  // Başlangıçta tüm ilerlemeleri hesapla
+  updateAllCourseProgress();
+  updateAllOverallProgress();
 });
+
+function handleCheckboxChange(event) {
+  const checkbox = event.target;
+  const courseElement = checkbox.closest(".course");
+  if (!courseElement) return;
+
+  persistCheckboxState(checkbox);
+  updateCourseProgress(courseElement);
+  updateAllOverallProgress();
+}
+
+function restoreCheckboxState(checkbox) {
+  const courseKey = checkbox.getAttribute("data-course");
+  const topicId = checkbox.getAttribute("data-topic-id");
+  const storageKey = makeStorageKey(courseKey, topicId);
+  const savedValue = localStorage.getItem(storageKey);
+
+  checkbox.checked = savedValue === "1";
+}
+
+function persistCheckboxState(checkbox) {
+  const courseKey = checkbox.getAttribute("data-course");
+  const topicId = checkbox.getAttribute("data-topic-id");
+  const storageKey = makeStorageKey(courseKey, topicId);
+
+  localStorage.setItem(storageKey, checkbox.checked ? "1" : "0");
+}
 
 // localStorage key üretmek için yardımcı fonksiyon
 function makeStorageKey(courseKey, topicId) {
   return "progress_" + courseKey + "_" + topicId;
 }
 
-// Bir dersin içindeki checkbox'lara göre yüzdelik ve kaç/kaç hesapla
+// Her ders için checkbox'lara göre yüzdelik ve kaç/kaç hesapla
 function updateCourseProgress(courseElement) {
-  if (!courseElement) return;
-
   const checkboxes = courseElement.querySelectorAll('input[type="checkbox"]');
   const total = checkboxes.length;
   if (total === 0) return;
 
-  var done = 0;
-  checkboxes.forEach(function (cb) {
+  let done = 0;
+  checkboxes.forEach((cb) => {
     if (cb.checked) done++;
   });
 
@@ -64,30 +62,23 @@ function updateCourseProgress(courseElement) {
   const text = courseElement.querySelector(".progress-text");
   const countText = courseElement.querySelector(".course-count-text");
 
-  if (fill) {
-    fill.style.width = percent + "%";
-  }
-  if (text) {
-    text.textContent = percent + "%";
-  }
-  if (countText) {
-    countText.textContent = done + " / " + total + " konu tamamlandı";
-  }
+  if (fill) fill.style.width = percent + "%";
+  if (text) text.textContent = percent + "%";
+  if (countText) countText.textContent = `${done} / ${total} konu tamamlandı`;
 }
 
 // TYT ve AYT için genel bar
 function updateOverallProgress(level) {
-  // level: "tyt" veya "ayt"
-  const allCourses = document.querySelectorAll('.course[data-course^="' + level + '-"]');
-  if (!allCourses || allCourses.length === 0) return;
+  const allCourses = document.querySelectorAll(`.course[data-course^="${level}-"]`);
+  if (allCourses.length === 0) return;
 
-  var totalTopics = 0;
-  var doneTopics = 0;
+  let totalTopics = 0;
+  let doneTopics = 0;
 
-  allCourses.forEach(function (course) {
+  allCourses.forEach((course) => {
     const checkboxes = course.querySelectorAll('input[type="checkbox"]');
     totalTopics += checkboxes.length;
-    checkboxes.forEach(function (cb) {
+    checkboxes.forEach((cb) => {
       if (cb.checked) doneTopics++;
     });
   });
@@ -96,20 +87,24 @@ function updateOverallProgress(level) {
 
   const percent = Math.round((doneTopics / totalTopics) * 100);
 
-  const overallEl = document.querySelector('.overall-block[data-overall="' + level + '"]');
+  const overallEl = document.querySelector(`.overall-block[data-overall="${level}"]`);
   if (!overallEl) return;
 
   const fill = overallEl.querySelector(".progress-fill");
   const text = overallEl.querySelector(".progress-text");
   const countText = overallEl.querySelector(".overall-count-text");
 
-  if (fill) {
-    fill.style.width = percent + "%";
-  }
-  if (text) {
-    text.textContent = percent + "%";
-  }
-  if (countText) {
-    countText.textContent = doneTopics + " / " + totalTopics + " konu tamamlandı";
-  }
+  if (fill) fill.style.width = percent + "%";
+  if (text) text.textContent = percent + "%";
+  if (countText) countText.textContent = `${doneTopics} / ${totalTopics} konu tamamlandı`;
+}
+
+function updateAllCourseProgress() {
+  const courses = document.querySelectorAll(".course");
+  courses.forEach((course) => updateCourseProgress(course));
+}
+
+function updateAllOverallProgress() {
+  updateOverallProgress("tyt");
+  updateOverallProgress("ayt");
 }
