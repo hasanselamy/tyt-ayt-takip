@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>TYT / AYT İlerleme Takip</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>TYT / AYT Çalışma Takip Paneli</h1>
+    <p>Konuları işaretledikçe her dersin ilerleme yüzdesi otomatik güncellenecek.</p>
+  </header>
+
+  <main>
+    <!-- TYT Matematik -->
+    <section class="course" data-course="tyt-mat">
+      <div class="course-header">
+        <h2>TYT Matematik</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+      </div>
+      <ul class="topic-list">
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-mat" data-topic-id="temel-kavramlar">
+            Temel Kavramlar
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-mat" data-topic-id="sayilar">
+            Sayılar ve Bölme-Bölünebilme
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-mat" data-topic-id="oran-oranti">
+            Oran – Orantı
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-mat" data-topic-id="denklem-cozme">
+            Denklem Çözme
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-mat" data-topic-id="mutlak-deger">
+            Mutlak Değer
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- TYT Türkçe -->
+    <section class="course" data-course="tyt-turkce">
+      <div class="course-header">
+        <h2>TYT Türkçe</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+      </div>
+      <ul class="topic-list">
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-turkce" data-topic-id="sozcuk-anlam">
+            Sözcükte Anlam
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-turkce" data-topic-id="cumlede-anlam">
+            Cümlede Anlam
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-turkce" data-topic-id="paragraf">
+            Paragraf
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-turkce" data-topic-id="yazim-noktalama">
+            Yazım Kuralları ve Noktalama
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-turkce" data-topic-id="sozcukte-yapi">
+            Sözcükte Yapı
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- TYT Fen (Fizik-Kimya-Biyo karışık alan istersen ayrıştırabiliriz) -->
+    <section class="course" data-course="tyt-fen">
+      <div class="course-header">
+        <h2>TYT Fen Bilimleri</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+      </div>
+      <ul class="topic-list">
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-fen" data-topic-id="fizik-is-guc-enerji">
+            Fizik – İş, Güç, Enerji
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-fen" data-topic-id="fizik-isi-sicaklik">
+            Fizik – Isı ve Sıcaklık
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-fen" data-topic-id="kimya-maddenin-halleri">
+            Kimya – Maddenin Halleri
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-fen" data-topic-id="kimya-temel-kimya">
+            Kimya – Kimyanın Temel Kanunları
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="tyt-fen" data-topic-id="biyoloji-hucre">
+            Biyoloji – Hücre ve Organeller
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- AYT Matematik -->
+    <section class="course" data-course="ayt-mat">
+      <div class="course-header">
+        <h2>AYT Matematik</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+      </div>
+      <ul class="topic-list">
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-mat" data-topic-id="fonksiyonlar">
+            Fonksiyonlar
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-mat" data-topic-id="polinomlar">
+            Polinomlar
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-mat" data-topic-id="logaritma">
+            Logaritma
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-mat" data-topic-id="trigonometri">
+            Trigonometri
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-mat" data-topic-id="limit-turev-integral">
+            Limit – Türev – İntegral (Genel Tarama)
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- AYT Fizik (örnek) -->
+    <section class="course" data-course="ayt-fizik">
+      <div class="course-header">
+        <h2>AYT Fizik</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+      </div>
+      <ul class="topic-list">
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-fizik" data-topic-id="kutuplanma-dalga">
+            Dalga Mekaniği
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-fizik" data-topic-id="elektrostatik">
+            Elektrostatik
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-fizik" data-topic-id="manyetizma">
+            Manyetizma
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-course="ayt-fizik" data-topic-id="modern-fizik">
+            Modern Fizik
+          </label>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 - TYT / AYT İlerleme Takip Paneli</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
