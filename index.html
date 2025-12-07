@@ -1,9 +1,159 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>TYT / AYT İlerleme Takip</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ====== GENEL TASARIM ====== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f5fb;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #4b7bec;
+      color: #fff;
+      padding: 25px 15px 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 8px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 20px auto 40px auto;
+      padding: 0 10px;
+    }
+
+    /* ====== GENEL İLERLEME BLOKLARI ====== */
+    .overall-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .overall-block {
+      background: #fff;
+      padding: 14px 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .overall-block h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .overall-count-text {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media (min-width: 700px) {
+      .overall-wrapper {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ====== DERS KARTLARI ====== */
+    .course {
+      background: #fff;
+      margin-bottom: 20px;
+      padding: 18px 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .course-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .course-header h2 {
+      font-size: 1.1rem;
+    }
+
+    .course-count-text {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    @media (min-width: 600px) {
+      .course-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    /* ====== PROGRESS BAR ====== */
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 14px;
+      background: #dde1f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #20bf6b;
+      transition: width 0.25s ease;
+    }
+
+    .progress-text {
+      min-width: 40px;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    /* ====== KONU LİSTESİ ====== */
+    .topic-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .topic-list li {
+      padding: 4px 0;
+    }
+
+    .topic-list label {
+      cursor: pointer;
+    }
+
+    .topic-list input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -14,7 +164,6 @@
   <main>
     <!-- GENEL İLERLEME (TYT & AYT) -->
     <section class="overall-wrapper">
-      <!-- TYT GENEL -->
       <div class="overall-block" data-overall="tyt">
         <h2>TYT Genel İlerleme</h2>
         <div class="progress-wrapper">
@@ -26,7 +175,6 @@
         <p class="overall-count-text">0 / 0 konu tamamlandı</p>
       </div>
 
-      <!-- AYT GENEL -->
       <div class="overall-block" data-overall="ayt">
         <h2>AYT Genel İlerleme</h2>
         <div class="progress-wrapper">
@@ -54,36 +202,11 @@
         </div>
       </div>
       <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-mat" data-topic-id="temel-kavramlar">
-            Temel Kavramlar
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-mat" data-topic-id="sayilar">
-            Sayılar ve Bölme-Bölünebilme
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-mat" data-topic-id="oran-oranti">
-            Oran – Orantı
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-mat" data-topic-id="denklem-cozme">
-            Denklem Çözme
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-mat" data-topic-id="mutlak-deger">
-            Mutlak Değer
-          </label>
-        </li>
+        <li><label><input type="checkbox" data-topic-id="temel-kavramlar" />Temel Kavramlar</label></li>
+        <li><label><input type="checkbox" data-topic-id="sayilar" />Sayılar ve Bölme-Bölünebilme</label></li>
+        <li><label><input type="checkbox" data-topic-id="oran-oranti" />Oran – Orantı</label></li>
+        <li><label><input type="checkbox" data-topic-id="denklem-cozme" />Denklem Çözme</label></li>
+        <li><label><input type="checkbox" data-topic-id="mutlak-deger" />Mutlak Değer</label></li>
       </ul>
     </section>
 
@@ -102,36 +225,11 @@
         </div>
       </div>
       <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-turkce" data-topic-id="sozcuk-anlam">
-            Sözcükte Anlam
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-turkce" data-topic-id="cumlede-anlam">
-            Cümlede Anlam
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-turkce" data-topic-id="paragraf">
-            Paragraf
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-turkce" data-topic-id="yazim-noktalama">
-            Yazım Kuralları ve Noktalama
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-turkce" data-topic-id="sozcukte-yapi">
-            Sözcükte Yapı
-          </label>
-        </li>
+        <li><label><input type="checkbox" data-topic-id="sozcuk-anlam" />Sözcükte Anlam</label></li>
+        <li><label><input type="checkbox" data-topic-id="cumlede-anlam" />Cümlede Anlam</label></li>
+        <li><label><input type="checkbox" data-topic-id="paragraf" />Paragraf</label></li>
+        <li><label><input type="checkbox" data-topic-id="yazim-noktalama" />Yazım Kuralları ve Noktalama</label></li>
+        <li><label><input type="checkbox" data-topic-id="sozcukte-yapi" />Sözcükte Yapı</label></li>
       </ul>
     </section>
 
@@ -150,36 +248,11 @@
         </div>
       </div>
       <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-fen" data-topic-id="fizik-is-guc-enerji">
-            Fizik – İş, Güç, Enerji
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-fen" data-topic-id="fizik-isi-sicaklik">
-            Fizik – Isı ve Sıcaklık
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-fen" data-topic-id="kimya-maddenin-halleri">
-            Kimya – Maddenin Halleri
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-fen" data-topic-id="kimya-temel-kimya">
-            Kimya – Kimyanın Temel Kanunları
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="tyt-fen" data-topic-id="biyoloji-hucre">
-            Biyoloji – Hücre ve Organeller
-          </label>
-        </li>
+        <li><label><input type="checkbox" data-topic-id="fizik-is-guc-enerji" />Fizik – İş, Güç, Enerji</label></li>
+        <li><label><input type="checkbox" data-topic-id="fizik-isi-sicaklik" />Fizik – Isı ve Sıcaklık</label></li>
+        <li><label><input type="checkbox" data-topic-id="kimya-maddenin-halleri" />Kimya – Maddenin Halleri</label></li>
+        <li><label><input type="checkbox" data-topic-id="kimya-temel-kimya" />Kimya – Kimyanın Temel Kanunları</label></li>
+        <li><label><input type="checkbox" data-topic-id="biyoloji-hucre" />Biyoloji – Hücre ve Organeller</label></li>
       </ul>
     </section>
 
@@ -198,36 +271,11 @@
         </div>
       </div>
       <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="fonksiyonlar">
-            Fonksiyonlar
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="polinomlar">
-            Polinomlar
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="logaritma">
-            Logaritma
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="turev">
-            Türev
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="integral">
-            İntegral
-          </label>
-        </li>
+        <li><label><input type="checkbox" data-topic-id="fonksiyonlar" />Fonksiyonlar</label></li>
+        <li><label><input type="checkbox" data-topic-id="polinomlar" />Polinomlar</label></li>
+        <li><label><input type="checkbox" data-topic-id="logaritma" />Logaritma</label></li>
+        <li><label><input type="checkbox" data-topic-id="trigonometri" />Trigonometri</label></li>
+        <li><label><input type="checkbox" data-topic-id="limit-turev-integral" />Limit – Türev – İntegral (Genel Tarama)</label></li>
       </ul>
     </section>
 
@@ -246,92 +294,104 @@
         </div>
       </div>
       <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="dalga">
-            Dalga Mekaniği
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="optik">
-            Optik
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="elektrik">
-            Elektrik ve Manyetizma
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="kuvvet-hareket">
-            Kuvvet ve Hareket
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="modern">
-            Modern Fizik
-          </label>
-        </li>
-      </ul>
-    </section>
-
-    <!-- AYT Edebiyat -->
-    <section class="course" data-course="ayt-edebiyat">
-      <div class="course-header">
-        <div>
-          <h2>AYT Edebiyat</h2>
-          <p class="course-count-text">0 / 0 konu tamamlandı</p>
-        </div>
-        <div class="progress-wrapper">
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-text">0%</span>
-        </div>
-      </div>
-      <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-edebiyat" data-topic-id="sanat-bilgisi">
-            Sanat ve Edebi Bilgiler
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-edebiyat" data-topic-id="siir">
-            Şiir Bilgisi
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-edebiyat" data-topic-id="roman">
-            Roman ve Hikâye
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-edebiyat" data-topic-id="tiyatro">
-            Tiyatro
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-edebiyat" data-topic-id="cumhuriyet-donemi">
-            Cumhuriyet Dönemi Edebiyatı
-          </label>
-        </li>
+        <li><label><input type="checkbox" data-topic-id="dalga-mekigi" />Dalga Mekaniği</label></li>
+        <li><label><input type="checkbox" data-topic-id="elektrostatik" />Elektrostatik</label></li>
+        <li><label><input type="checkbox" data-topic-id="manyetizma" />Manyetizma</label></li>
+        <li><label><input type="checkbox" data-topic-id="modern-fizik" />Modern Fizik</label></li>
       </ul>
     </section>
   </main>
 
   <footer>
-    Veriler tarayıcıda saklanır; sayfayı yenileseniz bile işaretlemeleriniz kaybolmaz.
+    <p>© 2025 - TYT / AYT İlerleme Takip Paneli</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- ====== JAVASCRIPT (tek dosyada) ====== -->
+  <script>
+    function makeStorageKey(courseKey, topicId) {
+      return "progress_" + courseKey + "_" + topicId;
+    }
+
+    function updateCourseProgress(courseElement) {
+      if (!courseElement) return;
+
+      const checkboxes = courseElement.querySelectorAll('input[type="checkbox"]');
+      const total = checkboxes.length;
+      if (total === 0) return;
+
+      let done = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) done++;
+      });
+
+      const percent = Math.round((done / total) * 100);
+
+      const fill = courseElement.querySelector(".progress-fill");
+      const text = courseElement.querySelector(".progress-text");
+      const countText = courseElement.querySelector(".course-count-text");
+
+      if (fill) fill.style.width = percent + "%";
+      if (text) text.textContent = percent + "%";
+      if (countText) countText.textContent = done + " / " + total + " konu tamamlandı";
+    }
+
+    function updateOverallProgress(level) {
+      const allCourses = document.querySelectorAll('.course[data-course^="' + level + '-"]');
+      if (!allCourses || allCourses.length === 0) return;
+
+      let totalTopics = 0;
+      let doneTopics = 0;
+
+      allCourses.forEach(course => {
+        const checkboxes = course.querySelectorAll('input[type="checkbox"]');
+        totalTopics += checkboxes.length;
+        checkboxes.forEach(cb => {
+          if (cb.checked) doneTopics++;
+        });
+      });
+
+      if (totalTopics === 0) return;
+
+      const percent = Math.round((doneTopics / totalTopics) * 100);
+      const overallEl = document.querySelector('.overall-block[data-overall="' + level + '"]');
+      if (!overallEl) return;
+
+      const fill = overallEl.querySelector(".progress-fill");
+      const text = overallEl.querySelector(".progress-text");
+      const countText = overallEl.querySelector(".overall-count-text");
+
+      if (fill) fill.style.width = percent + "%";
+      if (text) text.textContent = percent + "%";
+      if (countText) countText.textContent = doneTopics + " / " + totalTopics + " konu tamamlandı";
+    }
+
+    // === BAŞLANGIÇ ===
+    const courses = document.querySelectorAll(".course");
+
+    courses.forEach(courseEl => {
+      const courseKey = courseEl.getAttribute("data-course");
+      const checkboxes = courseEl.querySelectorAll('input[type="checkbox"]');
+
+      checkboxes.forEach(cb => {
+        const topicId = cb.getAttribute("data-topic-id");
+        const key = makeStorageKey(courseKey, topicId);
+        const saved = localStorage.getItem(key);
+
+        if (saved === "1") cb.checked = true;
+
+        cb.addEventListener("change", () => {
+          localStorage.setItem(key, cb.checked ? "1" : "0");
+          updateCourseProgress(courseEl);
+          updateOverallProgress("tyt");
+          updateOverallProgress("ayt");
+        });
+      });
+
+      updateCourseProgress(courseEl);
+    });
+
+    updateOverallProgress("tyt");
+    updateOverallProgress("ayt");
+  </script>
 </body>
 </html>
