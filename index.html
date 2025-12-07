@@ -8,14 +8,44 @@
 <body>
   <header>
     <h1>TYT / AYT Çalışma Takip Paneli</h1>
-    <p>Konuları işaretledikçe her dersin ilerleme yüzdesi otomatik güncellenecek.</p>
+    <p>Konuları işaretledikçe ders ve genel ilerleme otomatik güncellenir.</p>
   </header>
 
   <main>
+    <!-- GENEL İLERLEME (TYT & AYT) -->
+    <section class="overall-wrapper">
+      <!-- TYT GENEL -->
+      <div class="overall-block" data-overall="tyt">
+        <h2>TYT Genel İlerleme</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+        <p class="overall-count-text">0 / 0 konu tamamlandı</p>
+      </div>
+
+      <!-- AYT GENEL -->
+      <div class="overall-block" data-overall="ayt">
+        <h2>AYT Genel İlerleme</h2>
+        <div class="progress-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">0%</span>
+        </div>
+        <p class="overall-count-text">0 / 0 konu tamamlandı</p>
+      </div>
+    </section>
+
     <!-- TYT Matematik -->
     <section class="course" data-course="tyt-mat">
       <div class="course-header">
-        <h2>TYT Matematik</h2>
+        <div>
+          <h2>TYT Matematik</h2>
+          <p class="course-count-text">0 / 0 konu tamamlandı</p>
+        </div>
         <div class="progress-wrapper">
           <div class="progress-bar">
             <div class="progress-fill"></div>
@@ -60,7 +90,10 @@
     <!-- TYT Türkçe -->
     <section class="course" data-course="tyt-turkce">
       <div class="course-header">
-        <h2>TYT Türkçe</h2>
+        <div>
+          <h2>TYT Türkçe</h2>
+          <p class="course-count-text">0 / 0 konu tamamlandı</p>
+        </div>
         <div class="progress-wrapper">
           <div class="progress-bar">
             <div class="progress-fill"></div>
@@ -102,10 +135,13 @@
       </ul>
     </section>
 
-    <!-- TYT Fen (Fizik-Kimya-Biyo karışık alan istersen ayrıştırabiliriz) -->
+    <!-- TYT Fen -->
     <section class="course" data-course="tyt-fen">
       <div class="course-header">
-        <h2>TYT Fen Bilimleri</h2>
+        <div>
+          <h2>TYT Fen Bilimleri</h2>
+          <p class="course-count-text">0 / 0 konu tamamlandı</p>
+        </div>
         <div class="progress-wrapper">
           <div class="progress-bar">
             <div class="progress-fill"></div>
@@ -150,92 +186,5 @@
     <!-- AYT Matematik -->
     <section class="course" data-course="ayt-mat">
       <div class="course-header">
-        <h2>AYT Matematik</h2>
-        <div class="progress-wrapper">
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-text">0%</span>
-        </div>
-      </div>
-      <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="fonksiyonlar">
-            Fonksiyonlar
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="polinomlar">
-            Polinomlar
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="logaritma">
-            Logaritma
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="trigonometri">
-            Trigonometri
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-mat" data-topic-id="limit-turev-integral">
-            Limit – Türev – İntegral (Genel Tarama)
-          </label>
-        </li>
-      </ul>
-    </section>
-
-    <!-- AYT Fizik (örnek) -->
-    <section class="course" data-course="ayt-fizik">
-      <div class="course-header">
-        <h2>AYT Fizik</h2>
-        <div class="progress-wrapper">
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-text">0%</span>
-        </div>
-      </div>
-      <ul class="topic-list">
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="kutuplanma-dalga">
-            Dalga Mekaniği
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="elektrostatik">
-            Elektrostatik
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="manyetizma">
-            Manyetizma
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" data-course="ayt-fizik" data-topic-id="modern-fizik">
-            Modern Fizik
-          </label>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 - TYT / AYT İlerleme Takip Paneli</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+        <div>
+          <h2>AYT Matematik</h2>
