@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkboxes = document.querySelectorAll('input[type="checkbox"][data-course]');
 
   // Sayfa açılınca daha önce işaretlenenleri localStorage'dan yükle
-  checkboxes.forEach((checkbox) => {
+  checkboxes.forEach(function (checkbox) {
     const courseKey = checkbox.getAttribute("data-course");
     const topicId = checkbox.getAttribute("data-topic-id");
     const storageKey = makeStorageKey(courseKey, topicId);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Sayfa açılır açılmaz bütün derslerin barını hesapla
-  courses.forEach((courseEl) => {
+  courses.forEach(function (courseEl) {
     updateCourseProgress(courseEl);
   });
 
@@ -55,8 +55,8 @@ function updateCourseProgress(courseElement) {
   const total = checkboxes.length;
   if (total === 0) return;
 
-  let done = 0;
-  checkboxes.forEach((cb) => {
+  var done = 0;
+  checkboxes.forEach(function (cb) {
     if (cb.checked) done++;
   });
 
@@ -83,13 +83,13 @@ function updateOverallProgress(level) {
   const allCourses = document.querySelectorAll('.course[data-course^="' + level + '-"]');
   if (!allCourses || allCourses.length === 0) return;
 
-  let totalTopics = 0;
-  let doneTopics = 0;
+  var totalTopics = 0;
+  var doneTopics = 0;
 
-  allCourses.forEach((course) => {
+  allCourses.forEach(function (course) {
     const checkboxes = course.querySelectorAll('input[type="checkbox"][data-course]');
     totalTopics += checkboxes.length;
-    checkboxes.forEach((cb) => {
+    checkboxes.forEach(function (cb) {
       if (cb.checked) doneTopics++;
     });
   });
